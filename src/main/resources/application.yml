@@ -1,0 +1,38 @@
+#git? ?????? ??? base-addi? ????.
+#??
+spring:
+  profiles:
+    active: dev, base-addi
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/app10?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    username: root
+    password: 7497
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: [ NEED ]
+            clientSecret: [ NEED ]
+            scope: read:user, user:email
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+custom:
+  genFileDirPath: c:\Temp\app10
+#?? ???? ??? ??? ????? ??? ???
