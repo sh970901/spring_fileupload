@@ -64,4 +64,19 @@ public class MemberService implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority("member"));
         return new User(member.getUsername(), member.getPassword(), authorities);
     }
+
+    public Member join(String username, String password, String email) {
+        Member member = Member.builder()
+                .username(username)
+                .email(email)
+                .password(password)
+                .build();
+
+        memberRepository.save(member);
+        return member;
+    }
+
+    public long count() {
+        return memberRepository.count();
+    }
 }
