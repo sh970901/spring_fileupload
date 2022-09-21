@@ -1,4 +1,6 @@
-
+<header th:if="${loginedMember != null}">
+    user 3 / <img th:src="@{${loginedMemberProfileImgUrl}}" alt="">
+</header>
 <div>안녕</div>
 <div>
     [[${param.errorMsg}]]

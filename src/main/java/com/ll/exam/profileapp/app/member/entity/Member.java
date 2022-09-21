@@ -33,5 +33,11 @@ public class Member extends BaseEntity {
     private String getProfileImgPath() {
         return AppConfig.GET_FILE_DIR_PATH + "/" +profileImg;
     }
+
+    public String getProfileImgUrl() {
+        if(profileImg == null) return null;
+
+        return "/gen/" + profileImg;
+    }
 }
 
