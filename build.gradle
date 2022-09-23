@@ -50,6 +50,9 @@ dependencies {
     //타임리프에서 시큐리티
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
+    //레이아웃
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
     //sql 단순하게 출력
     implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0")
 }

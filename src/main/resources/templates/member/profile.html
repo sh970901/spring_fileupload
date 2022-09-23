@@ -1,13 +1,26 @@
-<h2>프로필</h2>
+<!DOCTYPE html>
+<html layout:decorate="~{layout/layout.html}">
+<head>
+    <title>회원가입</title>
+</head>
 
-<style>
-    .profile-img{
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-</style>
-<img class="profile-img" th:src="@{|/gen/${loginedMember.profileImg}|}">
-<div>아이디: <span th:text="${loginedMember.username}"></span></div>
-<div>이메일: <span th:text="${loginedMember.email}"></span></div>
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h2>프로필</h2>
+
+        <style>
+            .profile-img{
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        </style>
+        <img class="profile-img" th:src="@{|/gen/${loginedMember.profileImg}|}">
+        <div>아이디: <span th:text="${loginedMember.username}"></span></div>
+        <div>이메일: <span th:text="${loginedMember.email}"></span></div>
+    </div>
+</section>
+</body>
+</html>
