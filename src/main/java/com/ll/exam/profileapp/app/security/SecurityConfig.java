@@ -1,4 +1,4 @@
-package com.ll.exam.profileapp.app;
+package com.ll.exam.profileapp.app.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
