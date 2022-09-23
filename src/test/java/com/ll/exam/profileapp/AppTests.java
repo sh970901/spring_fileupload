@@ -53,7 +53,7 @@ class AppTests {
         resultActions
                 .andExpect(status().is2xxSuccessful()) //200성공 300리다이렉드 400클라잘못 500서버잘못
                 .andExpect(handler().handlerType(HomeController.class))     //컨트롤러 지정
-                .andExpect(handler().methodName("main"))            //메서드명 지정
+                .andExpect(handler().methodName("showMain"))            //메서드명 지정
                 .andExpect(content().string(containsString("안녕")));
     }
     @Test

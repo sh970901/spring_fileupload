@@ -55,6 +55,8 @@ dependencies {
 
     //sql 단순하게 출력
     implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0")
+
+    implementation 'org.apache.tika:tika-core:2.4.1'
 }
 
 tasks.named('test') {

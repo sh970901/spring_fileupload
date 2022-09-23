@@ -30,12 +30,27 @@
 <header>
     <div class="container">
         <a href="/">메인</a>
+        <a href="/about">어바웃</a>
         <a href="/member/login" sec:authorize="isAnonymous()">로그인</a>
         <a href="/member/join" sec:authorize="isAnonymous()">회원가입</a>
         <a href="/member/logout" sec:authorize="isAuthenticated()">로그아웃</a>
         <a href="/member/profile" sec:authorize="isAuthenticated()">프로파일</a>
     </div>
+
+    <hr>
+
+    <div class="container">
+        <header sec:authorize="isAuthenticated()">
+<!--            [[${#authentication.principal.username}]]-->
+            <img class="w-10 h-10 object-cover rounded" th:src  alt="">
+
+            <div th:text="|${#authentication.principal.username}|"></div>
+
+        </header>
+    </div>
 </header>
+
+<hr>
 
 <section layout:fragment="content">
     <div>내용</div>
