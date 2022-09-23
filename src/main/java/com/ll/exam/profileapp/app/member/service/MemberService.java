@@ -1,5 +1,6 @@
 package com.ll.exam.profileapp.app.member.service;
 
+import com.ll.exam.profileapp.app.Util;
 import com.ll.exam.profileapp.app.member.entity.Member;
 import com.ll.exam.profileapp.app.member.respository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,12 +31,16 @@ public class MemberService implements UserDetailsService {
     }
 
     public Member join(String username, String password, String email, MultipartFile profileImg) {
-        String profileImgDirName = "member";
-        String fileName = UUID.randomUUID().toString() + ".png";
+        String profileImgDirName = "member/"+ Util.date.getCurrentDateFormatted("yyyy_MM_dd");
+
+        String ext = Util.file.getExt(profileImg.getOriginalFilename());
+
+        String fileName = UUID.randomUUID() + "." + ext;
         String profileImgDirPath = genFileDirPath + "/" + profileImgDirName;
         String profileImgFilePath = profileImgDirPath + "/" + fileName;
 
         new File(profileImgDirPath).mkdirs(); // 폴더가 혹시나 없다면 만들어준다.
+
         try {
             profileImg.transferTo(new File(profileImgFilePath));
         } catch (IOException e) {
