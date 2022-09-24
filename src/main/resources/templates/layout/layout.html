@@ -42,8 +42,8 @@
     <div class="container">
         <header sec:authorize="isAuthenticated()">
 <!--            [[${#authentication.principal.username}]]-->
-            <img class="w-10 h-10 object-cover rounded" th:src="@{${#authentication.principal.profileImgUrl}}"  alt="">
-
+<!--            <img class="w-10 h-10 object-cover rounded" th:src="@{${#authentication.principal.profileImgUrl}}"  alt="">-->
+            <img class="w-10 h-10 object-cover rounded" th:src="@{|/member/profile/img/${#authentication.principal.id}|}" alt="">
             <div th:text="|${#authentication.principal.username}님 환영합니다|"></div>
 
         </header>

@@ -24,18 +24,19 @@ public class Member extends BaseEntity {
     private String profileImg;
 
     public void removeProfileImgOnStorage() {
-        if(profileImg == null || profileImg.trim().length() ==0) return;
+        if (profileImg == null || profileImg.trim().length() == 0) return;
 
         String profileImgPath = getProfileImgPath();
+
         new File(profileImgPath).delete();
     }
 
     private String getProfileImgPath() {
-        return AppConfig.GET_FILE_DIR_PATH + "/" +profileImg;
+        return AppConfig.GET_FILE_DIR_PATH + "/" + profileImg;
     }
 
     public String getProfileImgUrl() {
-        if(profileImg == null) return null;
+        if (profileImg == null) return null;
 
         return "/gen/" + profileImg;
     }

@@ -17,9 +17,10 @@
                 border-radius: 10px;
             }
         </style>
-        <img class="profile-img" th:src="@{${memberContext.profileImgUrl}}">
-        <div>아이디: <span th:text="${memberContext.username}"></span></div>
-<!--        <div>이메일: <span th:text="${memberContext.email}"></span></div>-->
+<!--        <img class="profile-img" th:src="@{${#authentication.principal.profileImgUrl}}">-->
+        <img class="profile-img" th:src="@{|/member/profile/img/${#authentication.principal.id}|}">
+        <div>아이디: <span th:text="${#authentication.principal.username}"></span></div>
+        <div>이메일: <span th:text="${#authentication.principal.email}"></span></div>
     </div>
 </section>
 </body>
