@@ -57,6 +57,8 @@ dependencies {
     implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0")
 
     implementation 'org.apache.tika:tika-core:2.4.1'
+
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 }
 
 tasks.named('test') {

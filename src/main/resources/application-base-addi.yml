@@ -4,16 +4,5 @@ spring:
     oauth2:
       client:
         registration:
-          github:
-            clientId: [NEED]
-            clientSecret: [NEED]
-            scope: read:user, user:email
           kakao:
-            clientId: [NEED]
-            scope: profile_nickname, profile_image, account_email
-            client-name: Kakao
-            authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
-            client-authentication-method: POST
-test:
-  username: 1234
+            clientId: 5522ae55f9a130b976b3b49a816f0c0a
