@@ -6,6 +6,7 @@ import com.ll.exam.profileapp.app.member.respository.MemberRepository;
 import com.ll.exam.profileapp.app.security.dto.MemberContext;
 import com.ll.exam.profileapp.app.security.exception.OAuthTypeMatchNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,9 +24,13 @@ import java.util.Map;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Slf4j
 public class OAuth2UserService extends DefaultOAuth2UserService {
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private MemberService memberService;
 
     @Override
     @Transactional
@@ -48,9 +53,12 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         if (isNew(oauthType, oauthId)) {
             switch (oauthType) {
                 case "KAKAO" -> {
+                    log.debug("attributes : " + attributes);
+
                     Map attributesProperties = (Map) attributes.get("properties");
                     Map attributesKakaoAcount = (Map) attributes.get("kakao_account");
                     String nickname = (String) attributesProperties.get("nickname");
+                    String profile_image = (String) attributesProperties.get("profile_image");
                     //email을 안받아올 경우를 대비하여 구성, username도 따로 구성
                     String email = "%s@kakao.com".formatted(oauthId);
                     String username = "KAKAO_%s".formatted(oauthId);
@@ -66,6 +74,7 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
                             .build();
 
                     memberRepository.save(member);
+                    memberService.setProfileImgByUrl(member, profile_image);
                 }
             }
         }

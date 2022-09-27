@@ -35,6 +35,22 @@ public class MemberService {
     }
 
     public Member join(String username, String password, String email, MultipartFile profileImg) {
+        String profileImgRelPath = saveProfileImg(profileImg);
+
+        Member member = Member.builder()
+                .username(username)
+                .email(email)
+                .password(password)
+                .profileImg(profileImgRelPath)
+                .build();
+
+        memberRepository.save(member);
+        return member;
+    }
+    private String saveProfileImg(MultipartFile profileImg) {
+        if ( profileImg == null || profileImg.isEmpty() ) {
+            return null;
+        }
         String profileImgDirName = getCurrentProfileImgDirName();
 
         String ext = Util.file.getExt(profileImg.getOriginalFilename());
@@ -50,17 +66,8 @@ public class MemberService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String profileImgRelPath = profileImgDirName + "/" + fileName;
 
-        Member member = Member.builder()
-                .username(username)
-                .email(email)
-                .password(password)
-                .profileImg(profileImgRelPath)
-                .build();
-
-        memberRepository.save(member);
-        return member;
+        return profileImgDirName + "/" + fileName;
     }
 
     public Member getMemberById(Long loginedMemberId) {
@@ -97,4 +104,14 @@ public class MemberService {
         member.setProfileImg(getCurrentProfileImgDirName() + "/" + new File(filePath).getName());
         memberRepository.save(member);
     }
+
+    public void modify(Member member, String email, MultipartFile profileImg) {
+        removeProfileImg(member);
+        String profileImgRelPath = saveProfileImg(profileImg);
+
+        member.setEmail(email);
+        member.setProfileImg(profileImgRelPath);
+        memberRepository.save(member);
+    }
+
 }

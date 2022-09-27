@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout/layout.html}">
+
+<head>
+    <title>회원정보수정</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h1>회원정보수정</h1>
+
+        <script>
+            function ModifyForm__submit(form) {
+                form.email.value = form.email.value.trim();
+
+                if (form.email.value.length == 0) {
+                    alert("이메일을 입력해주세요.");
+                    form.email.focus();
+                    return;
+                }
+
+                form.submit();
+            }
+
+        </script>
+
+
+        <form th:action method="POST" enctype="multipart/form-data" onsubmit="ModifyForm__submit(this); return false;">
+            <div>
+                <span>아이디</span>
+                <span th:text="${#authentication.principal.username}"></span>
+            </div>
+            <div>
+                <span>이메일</span>
+                <span th:text="${#authentication.principal.email}"></span>
+            </div>
+            <div>
+                <span>기존 프로필이미지</span>
+                <img class="w-10 h-10 rounded object-cover" th:src="@{|/member/profile/img/${#authentication.principal.id}|}">
+
+                <label>
+                    삭제
+                    <input type="checkbox" name="profileImg__delete" value="Y">
+                </label>
+            </div>
+            <div>
+                <span>프로필이미지</span>
+                <input type="file" name="profileImg" accept="image/png, image/gif, image/jpeg">
+            </div>
+            <div>
+                <span>수정</span>
+                <input type="submit" value="수정">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

@@ -66,6 +66,25 @@ public class MemberController {
         return "redirect:/member/profile";
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/modify")
+    public String showModify() {
+        return "member/modify";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/modify")
+    public String modify(@AuthenticationPrincipal MemberContext context, String email, MultipartFile profileImg, String profileImg__delete) {
+        Member member = memberService.getMemberById(context.getId());
+        if ( profileImg__delete != null && profileImg__delete.equals("Y") ) {
+            memberService.removeProfileImg(member);
+        }
+
+        memberService.modify(member, email, profileImg);
+
+        return "redirect:/member/profile";
+    }
+
     //로그인한 회원만
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/profile")
