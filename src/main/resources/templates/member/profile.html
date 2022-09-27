@@ -18,7 +18,7 @@
             }
         </style>
 <!--        <img class="profile-img" th:src="@{${#authentication.principal.profileImgUrl}}">-->
-        <img class="profile-img" th:src="@{|/member/profile/img/${#authentication.principal.id}|}">
+        <img class="w-10 h-10 rounded object-cover" th:src="@{${#authentication.principal.profileImgRedirectUrl}}">
         <div>아이디: <span th:text="${#authentication.principal.username}"></span></div>
         <div>이메일: <span th:text="${#authentication.principal.email}"></span></div>
     </div>
