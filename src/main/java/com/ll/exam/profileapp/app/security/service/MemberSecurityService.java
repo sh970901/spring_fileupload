@@ -18,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberSecurityService implements UserDetailsService {
     private final MemberRepository memberRepository;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByUsername(username).get();

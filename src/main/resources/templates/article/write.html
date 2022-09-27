@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout/layout.html}">
+
+<head>
+    <title>글쓰기</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h1>글쓰기</h1>
+
+        <script>
+            function WriteForm__submit(form) {
+                form.username.value = form.username.value.trim();
+
+                if (form. .value.length == 0) {
+                    alert("아이디를 입력해주세요.");
+                    form.username.focus();
+                    return;
+                }
+
+                form.password.value = form.password.value.trim();
+
+                if (form.password.value.length == 0) {
+                    alert("비밀번호를 입력해주세요.");
+                    form.password.focus();
+                    return;
+                }
+
+                form.email.value = form.email.value.trim();
+
+                if (form.email.value.length == 0) {
+                    alert("이메일을 입력해주세요.");
+                    form.email.focus();
+                    return;
+                }
+
+                form.submit();
+            }
+
+        </script>
+
+
+        <form th:action method="POST" enctype="multipart/form-data" onsubmit="WriteForm__submit(this); return false;">
+            <div>
+                <span>제목</span>
+                <input type="text" name="subject">
+            </div>
+            <div>
+                <span>내용</span>
+                <textarea name="content"></textarea>
+            </div>
+            <div>
+                <span>본문이미지</span>
+                <div>
+                    <input type="file" name="bodyImg__1" accept="image/png, image/gif, image/jpeg">
+                </div>
+                <div>
+                    <input type="file" name="bodyImg__2" accept="image/png, image/gif, image/jpeg">
+                </div>
+            </div>
+            <div>
+                <span>글쓰기</span>
+                <input type="submit" value="작성">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>
