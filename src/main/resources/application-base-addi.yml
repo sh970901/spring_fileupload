@@ -1,8 +1,0 @@
-#git에 올리면 안되는 것
-spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          kakao:
-            clientId: [카카오 키]
