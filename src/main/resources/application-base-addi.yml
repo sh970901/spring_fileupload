@@ -5,4 +5,4 @@ spring:
       client:
         registration:
           kakao:
-            clientId: 5522ae55f9a130b976b3b49a816f0c0a
+            clientId: [카카오 키]
