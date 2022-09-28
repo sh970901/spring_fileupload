@@ -40,6 +40,6 @@ public class GenFile extends BaseEntity {
     }
 
     public String getFileName() {
-        return getId() + "." + fileExt;
+        return getId() + "." + getFileExt();
     }
 }
