@@ -55,6 +55,46 @@ public class Util {
 
             return newFilePath;
         }
+        public static String getFileExtTypeCodeFromFileExt(String ext) {
+            switch (ext) {
+                case "jpeg":
+                case "jpg":
+                case "gif":
+                case "png":
+                    return "img";
+                case "mp4":
+                case "avi":
+                case "mov":
+                    return "video";
+                case "mp3":
+                    return "audio";
+            }
+
+            return "etc";
+        }
+
+        public static String getFileExtType2CodeFromFileExt(String ext) {
+
+            switch (ext) {
+                case "jpeg":
+                case "jpg":
+                    return "jpg";
+                case "gif":
+                    return ext;
+                case "png":
+                    return ext;
+                case "mp4":
+                    return ext;
+                case "mov":
+                    return ext;
+                case "avi":
+                    return ext;
+                case "mp3":
+                    return ext;
+            }
+
+            return "etc";
+        }
     }
 
 }
