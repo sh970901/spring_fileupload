@@ -4,11 +4,14 @@ import com.ll.exam.profileapp.app.article.entity.Article;
 import com.ll.exam.profileapp.app.article.repository.ArticleRepository;
 import com.ll.exam.profileapp.app.gen.entity.GenFile;
 import com.ll.exam.profileapp.app.gen.service.GenFileService;
+import com.ll.exam.profileapp.app.hashTag.service.HashTagService;
 import com.ll.exam.profileapp.app.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,10 +19,16 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
     private final GenFileService genFileService;
 
+    private final HashTagService hashTagService;
+
     public Article write(Long authorId, String subject, String content) {
         return write(new Member(authorId), subject, content);
     }
     public Article write(Member member, String subject, String content) {
+        return write(member, subject, content, "");
+    }
+
+    public Article write(Member member, String subject, String content,String hashTagStr) {
         Article article = Article
                 .builder()
                 .author(member)
@@ -28,6 +37,8 @@ public class ArticleService {
                 .build();
 
         articleRepository.save(article);
+
+        hashTagService.applyHashTags(article, hashTagStr);
 
         return article;
     }

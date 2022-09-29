@@ -57,7 +57,7 @@ class AppTests {
     }
     @Test
     @DisplayName("회원의 수")
-    void t2(){
+    void t2() throws Exception {
         long count = memberService.count();
         assertThat(count).isGreaterThan(0);
     }
