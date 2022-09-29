@@ -1,5 +1,6 @@
 package com.ll.exam.profileapp.app.member.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ll.exam.profileapp.app.base.AppConfig;
 import com.ll.exam.profileapp.app.base.entity.BaseEntity;
 import lombok.*;
@@ -19,6 +20,7 @@ import java.io.File;
 public class Member extends BaseEntity {
     @Column(unique = true)
     private String username;
+    @JsonIgnore
     private String password;
     private String email;
     private String profileImg;

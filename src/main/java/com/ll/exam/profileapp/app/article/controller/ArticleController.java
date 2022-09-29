@@ -56,10 +56,15 @@ public class ArticleController {
     }
     @GetMapping("/{id}")
     public String showDetail(Model model, @PathVariable Long id) {
-        Article article = articleService.getArticleById(id);
+        Article article = articleService.getForPrintArticleById(id);
         model.addAttribute("article", article);
 
         return "article/detail";
+    }
+    @GetMapping("/{id}/json/forDebug")
+    @ResponseBody
+    public Article showDetailJson(Model model, @PathVariable Long id) {
+        return articleService.getForPrintArticleById(id);
     }
 
 }

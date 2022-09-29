@@ -13,10 +13,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
+import java.util.*;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -127,5 +126,18 @@ public class GenFileService {
         file.getParentFile().mkdirs();
 
         downloadedFile.renameTo(file);
+    }
+
+    public Map<String, GenFile> getRelGenFileMap(Article article) {
+        List<GenFile> genFiles = genFileRepository.findByRelTypeCodeAndRelIdOrderByTypeCodeAscType2CodeAscFileNoAsc("article", article.getId());
+
+        return genFiles
+                .stream()
+                .collect(Collectors.toMap(
+                        genFile -> genFile.getTypeCode() + "__" + genFile.getType2Code() + "__" + genFile.getFileNo(),
+                        genFile -> genFile,
+                        (genFile1, genFile2) -> genFile1,
+                        LinkedHashMap::new
+                ));
     }
 }

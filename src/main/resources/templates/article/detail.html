@@ -10,7 +10,36 @@
     <div class="container">
         <h1>글 상세페이지</h1>
 
-        [[${article}]]
+<!--        [[${article}]]-->
+        <div>
+            작성 : [[${article.createDate}]]
+        </div>
+
+        <div>
+            수정 : [[${article.modifyDate}]]
+        </div>
+
+        <div>
+            작성자 : [[${article.author.username}]]
+        </div>
+
+        <div>
+            제목 : [[${article.subject}]]
+        </div>
+
+        <div>
+            내용 : [[${article.content}]]
+        </div>
+        <div th:each="entry : ${article.extra.genFileMap}">
+            <img th:src="@{${entry.value.url}}" alt="">
+        </div>
+<!--        <div>-->
+<!--&lt;!&ndash;            이미지 : [[${article.extra}]]&ndash;&gt;-->
+<!--            <img th:src="@{${article.extra.genFileMap.common\_\_inBody\_\_1.url}}" alt="">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <img th:src="@{${article.extra.genFileMap.common\_\_inBody\_\_2.url}}" alt="">-->
+<!--        </div>-->
     </div>
 </section>
 </body>
