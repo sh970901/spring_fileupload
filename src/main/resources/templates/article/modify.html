@@ -45,16 +45,31 @@
             </div>
             <div>
                 <span>본문이미지</span>
-                <div>
-                    <input type="file" name="common__inBody__1" accept="image/png, image/gif, image/jpeg">
-                </div>
-                <div>
-                    <input type="file" name="common__inBody__2" accept="image/png, image/gif, image/jpeg">
-                </div>
+                <th:block th:each="i : ${#numbers.sequence(1, 5)}" th:with="genFile=${article.extra.genFileMap.get('common\_\_inBody\_\_' + i)}">
+                    <div>
+                        <span th:text="|${i}번 이미지|"></span>
+
+                        <th:block th:if="${genFile != null}">
+                            <hr>
+                            <a th:href="@{${genFile.url}}" target="_blank">
+                                <img class="w-10 h-10 object-cover rounded" title="새창에서 크게 보기" th:src="@{${genFile.url}}" alt="">
+                                <br>
+                                <label>
+                                    <input type="checkbox" value="" th:name="|delete___common\_\_inBody\_\_${i}|">
+                                    <span>이미지 삭제</span>
+                                </label>
+                            </a>
+                        </th:block>
+
+                        <hr>
+                        <input type="file" th:name="|common\_\_inBody\_\_${i}|"
+                               accept="image/png, image/gif, image/jpeg">
+                    </div>
+                </th:block>
             </div>
             <div>
-                <span>글쓰기</span>
-                <input type="submit" value="작성">
+                <span>글수정</span>
+                <input type="submit" value="수정">
             </div>
         </form>
     </div>

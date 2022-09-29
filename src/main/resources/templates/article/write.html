@@ -49,8 +49,13 @@
                     <input type="file" name="common__inBody__1" accept="image/png, image/gif, image/jpeg">
                 </div>
                 <div>
-                    <input type="file" name="common__inBody__2" accept="image/png, image/gif, image/jpeg">
                 </div>
+                <th:block th:each="i : ${#numbers.sequence(1, 5)}">
+                    <div>
+                        <span th:text="|${i}번 이미지|"></span>
+                        <input type="file" th:name="|common\_\_inBody\_\_${i}|" accept="image/png, image/gif, image/jpeg">
+                    </div>
+                </th:block>
             </div>
             <div>
                 <span>글쓰기</span>
