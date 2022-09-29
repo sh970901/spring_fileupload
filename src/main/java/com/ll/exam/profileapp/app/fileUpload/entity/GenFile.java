@@ -2,7 +2,6 @@ package com.ll.exam.profileapp.app.fileUpload.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ll.exam.profileapp.app.base.entity.BaseEntity;
-import com.ll.exam.profileapp.app.fileUpload.service.GenFileService;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

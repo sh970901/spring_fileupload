@@ -3,22 +3,13 @@ package com.ll.exam.profileapp.app.member.service;
 import com.ll.exam.profileapp.app.Util;
 import com.ll.exam.profileapp.app.member.entity.Member;
 import com.ll.exam.profileapp.app.member.respository.MemberRepository;
-import com.ll.exam.profileapp.app.security.dto.MemberContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service

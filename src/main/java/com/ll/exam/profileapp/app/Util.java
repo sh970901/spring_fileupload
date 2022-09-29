@@ -1,6 +1,5 @@
 package com.ll.exam.profileapp.app;
 
-import groovy.grape.IvyGrabRecord;
 import org.apache.tika.Tika;
 import org.springframework.web.client.RestTemplate;
 

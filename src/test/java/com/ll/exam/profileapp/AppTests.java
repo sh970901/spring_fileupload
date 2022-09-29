@@ -13,7 +13,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithUserDetails;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -32,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @Transactional  //여기서 수행된건 디비반영X
 @AutoConfigureMockMvc
-@ActiveProfiles({"base-addi", "test"}) //application.yml에 active: dev, base-addi가 열리는게 아니고 "base-addi", "test" 얘네가 열린다.
+@ActiveProfiles("test") //application.yml에 active: dev, base-addi가 열리는게 아니고 "base-addi", "test" 얘네가 열린다.
 class AppTests {
     @Autowired
     private MockMvc mvc;

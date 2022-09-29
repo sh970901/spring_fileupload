@@ -3,5 +3,10 @@
 #??
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/app10_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://${testDbIp:127.0.0.1}:3306/app10_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+      username: ${testDbId:root}
+      password: ${testDbPw:7497}
+      jpa:
+        hibernate:
+          ddl-auto: create
 #??? value ??? ? ? ??

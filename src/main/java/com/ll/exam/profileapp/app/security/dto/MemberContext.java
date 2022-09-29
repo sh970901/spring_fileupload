@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Getter
@@ -62,4 +61,11 @@ public class MemberContext extends User implements OAuth2User {
     }
 
 
+    public boolean memberIs(Member member) {
+        return id.equals(member.getId());
+    }
+
+    public boolean memberIsNot(Member member) {
+        return memberIs(member) == false;
+    }
 }
