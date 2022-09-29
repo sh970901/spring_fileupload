@@ -1,4 +1,4 @@
-package com.ll.exam.profileapp.app.fileUpload.controller;
+package com.ll.exam.profileapp.app.gen.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

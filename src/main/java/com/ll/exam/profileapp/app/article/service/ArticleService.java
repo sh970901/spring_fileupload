@@ -2,8 +2,8 @@ package com.ll.exam.profileapp.app.article.service;
 
 import com.ll.exam.profileapp.app.article.entity.Article;
 import com.ll.exam.profileapp.app.article.repository.ArticleRepository;
-import com.ll.exam.profileapp.app.fileUpload.entity.GenFile;
-import com.ll.exam.profileapp.app.fileUpload.service.GenFileService;
+import com.ll.exam.profileapp.app.gen.entity.GenFile;
+import com.ll.exam.profileapp.app.gen.service.GenFileService;
 import com.ll.exam.profileapp.app.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

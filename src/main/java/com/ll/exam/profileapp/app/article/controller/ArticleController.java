@@ -5,8 +5,8 @@ import com.ll.exam.profileapp.app.article.entity.Article;
 import com.ll.exam.profileapp.app.article.input.ArticleForm;
 import com.ll.exam.profileapp.app.article.service.ArticleService;
 import com.ll.exam.profileapp.app.base.dto.RsData;
-import com.ll.exam.profileapp.app.fileUpload.entity.GenFile;
-import com.ll.exam.profileapp.app.fileUpload.service.GenFileService;
+import com.ll.exam.profileapp.app.gen.entity.GenFile;
+import com.ll.exam.profileapp.app.gen.service.GenFileService;
 import com.ll.exam.profileapp.app.security.dto.MemberContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -77,12 +77,21 @@ public class ArticleController {
     }
 
     @PostMapping("/{id}/modify")
-    public String Modify(@AuthenticationPrincipal MemberContext memberContext,Model model, @PathVariable Long id, @Valid ArticleForm articleForm) {
+    public String modify(@AuthenticationPrincipal MemberContext memberContext,
+                         Model model, @PathVariable Long id,
+                         @Valid ArticleForm articleForm,
+                         MultipartRequest multipartRequest,
+                         @RequestParam Map<String, String> params) {
         Article article = articleService.getForPrintArticleById(id);
 
         if (memberContext.memberIsNot(article.getAuthor())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
+        Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+
+        genFileService.deleteFiles(article, params);
+
+        RsData<Map<String, GenFile>> saveFilesRsData = genFileService.saveFiles(article, fileMap);
 
         articleService.modify(article, articleForm.getSubject(), articleForm.getContent());
 

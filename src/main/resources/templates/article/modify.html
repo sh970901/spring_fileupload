@@ -45,23 +45,25 @@
             </div>
             <div>
                 <span>본문이미지</span>
-                <th:block th:each="i : ${#numbers.sequence(1, 5)}" th:with="genFile=${article.extra.genFileMap.get('common\_\_inBody\_\_' + i)}">
+                <th:block th:each="i : ${#numbers.sequence(1, 5)}"
+                          th:with="genFile=${article.extra.genFileMap.get('common\_\_inBody\_\_' + i)}">
                     <div>
-                        <span th:text="|${i}번 이미지|"></span>
-
-                        <th:block th:if="${genFile != null}">
-                            <hr>
-                            <a th:href="@{${genFile.url}}" target="_blank">
-                                <img class="w-10 h-10 object-cover rounded" title="새창에서 크게 보기" th:src="@{${genFile.url}}" alt="">
-                                <br>
-                                <label>
-                                    <input type="checkbox" value="" th:name="|delete___common\_\_inBody\_\_${i}|">
-                                    <span>이미지 삭제</span>
-                                </label>
-                            </a>
-                        </th:block>
-
                         <hr>
+                        <span th:text="|${i}번 이미지|"></span>
+                        <div th:if="${genFile != null}">
+                            <a th:href="@{${genFile.url}}" target="_blank" class="inline-block">
+                                <img class="w-10 h-10 object-cover rounded" title="새창에서 크게 보기"
+                                     th:src="@{${genFile.url}}" alt="">
+                            </a>
+                            <br>
+                            <a th:href="@{${genFile.downloadUrl}}">다운로드</a>
+                            <br>
+                            <label>
+                                <input type="checkbox" value="Y" th:name="|delete___common\_\_inBody\_\_${i}|">
+                                <span>이미지 삭제</span>
+                            </label>
+                        </div>
+                        <br>
                         <input type="file" th:name="|common\_\_inBody\_\_${i}|"
                                accept="image/png, image/gif, image/jpeg">
                     </div>

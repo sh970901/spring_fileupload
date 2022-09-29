@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout/layout.html}">
+
+<head>
+    <title>내 게시물 리스트</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h1>게시물 리스트</h1>
+
+        <th:block th:each="article : ${articles}">
+            <div>
+                [[${article.id}]]
+            </div>
+        </th:block>
+
+</section>
+</body>
+</html>
