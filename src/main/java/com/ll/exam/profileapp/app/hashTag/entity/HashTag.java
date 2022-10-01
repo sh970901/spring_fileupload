@@ -18,7 +18,10 @@ import javax.persistence.ManyToOne;
 @ToString(callSuper = true)
 public class HashTag extends BaseEntity {
     @ManyToOne
+    @ToString.Exclude
     private Article article;
+
     @ManyToOne
+    @ToString.Exclude
     private Keyword keyword;
 }
