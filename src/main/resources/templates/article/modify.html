@@ -43,6 +43,21 @@
                 <span>내용</span>
                 <textarea name="content" th:text="${article.content}"></textarea>
             </div>
+
+            <div>
+                해시태그 :
+                <th:block th:each="hashTag : ${article.extra.hashTags}">
+                    <a th:href="@{${hashTag.keyword.listUrl}}">
+                        #[[${hashTag.keyword.content}]]
+                    </a>
+                </th:block>
+            </div>
+
+            <div>
+                <span>해시태그</span>
+                <input type="text" name="hashTagContents" placeholder="#태그1 #태그2" th:value="${article.extra_inputValue_hashTagContents}" />
+            </div>
+
             <div>
                 <span>본문이미지</span>
                 <th:block th:each="i : ${#numbers.sequence(1, 5)}"

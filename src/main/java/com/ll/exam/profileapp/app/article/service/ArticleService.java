@@ -10,10 +10,8 @@ import com.ll.exam.profileapp.app.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -68,9 +66,10 @@ public class ArticleService {
         return article;
     }
 
-    public void modify(Article article, String subject, String content) {
+    public void modify(Article article, String subject, String content, String hashTagContents) {
         article.setSubject(subject);
         article.setContent(content);
         articleRepository.save(article);
+        hashTagService.applyHashTags(article, hashTagContents);
     }
 }

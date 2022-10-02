@@ -1,12 +1,16 @@
 package com.ll.exam.profileapp.app.article.entity;
 
 import com.ll.exam.profileapp.app.base.entity.BaseEntity;
+import com.ll.exam.profileapp.app.hashTag.entity.HashTag;
 import com.ll.exam.profileapp.app.member.entity.Member;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Entity
 @Setter
@@ -20,4 +24,24 @@ public class Article extends BaseEntity {
     private Member author;
     private String subject;
     private String content;
+    public String getExtra_inputValue_hashTagContents() {
+        Map<String, Object> extra = getExtra();
+
+        if (extra.containsKey("hashTags") == false) {
+            return "";
+        }
+
+        List<HashTag> hashTags = (List<HashTag>) extra.get("hashTags");
+
+        if (hashTags.isEmpty()) {
+            return "";
+        }
+
+        return "#" + hashTags
+                .stream()
+                .map(hashTag -> hashTag.getKeyword().getContent())
+                .sorted()
+                .collect(Collectors.joining(" #"))
+                .trim();
+    }
 }

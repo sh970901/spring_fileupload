@@ -21,7 +21,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.InputStream;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
