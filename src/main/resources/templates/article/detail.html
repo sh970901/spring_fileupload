@@ -32,11 +32,7 @@
         </div>
         <div>
             해시태그 :
-            <th:block th:each="hashTag : ${article.extra.hashTags}">
-                <a th:href="@{${hashTag.keyword.listUrl}}">
-                    #[[${hashTag.keyword.content}]]
-                </a>
-            </th:block>
+            <th:block th:utext="${article.extra_hashTagLinks}"/>
         </div>
         <div th:each="entry : ${article.extra.genFileMap}">
             <hr />
@@ -49,6 +45,11 @@
 <!--        <div>-->
 <!--            <img th:src="@{${article.extra.genFileMap.common\_\_inBody\_\_2.url}}" alt="">-->
 <!--        </div>-->
+        <div class="py-3">
+            <a th:href="@{|/article/list|}" class="btn btn-sm btn-secondary">목록</a>
+            <a th:href="@{|/article/${article.id}/modify|}" class="btn btn-sm btn-secondary">수정</a>
+            <a onclick="return confirm('정말로 삭제하시겠습니까?')" th:href="@{|/article/${article.id}/delete|}" class="btn btn-sm btn-secondary">삭제</a>
+        </div>
     </div>
 </section>
 </body>

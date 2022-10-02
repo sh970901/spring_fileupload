@@ -39,9 +39,37 @@ public class Article extends BaseEntity {
 
         return "#" + hashTags
                 .stream()
-                .map(hashTag -> hashTag.getKeyword().getContent())
+                .map(hashTag -> "#" + hashTag.getKeyword().getContent())
                 .sorted()
                 .collect(Collectors.joining(" #"))
                 .trim();
+    }
+
+    public String getExtra_hashTagLinks() {
+        Map<String, Object> extra = getExtra();
+
+        if (extra.containsKey("hashTags") == false) {
+            return "";
+        }
+
+        List<HashTag> hashTags = (List<HashTag>) extra.get("hashTags");
+
+        if (hashTags.isEmpty()) {
+            return "";
+        }
+
+        return hashTags
+                .stream()
+                .map(hashTag -> {
+                    String text = "#" + hashTag.getKeyword().getContent();
+
+                    return """
+                            <a href="%s" target="_blank">%s</a>
+                            """
+                            .stripIndent()
+                            .formatted(hashTag.getKeyword().getListUrl(), text);
+                })
+                .sorted()
+                .collect(Collectors.joining(" "));
     }
 }

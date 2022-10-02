@@ -14,6 +14,32 @@ import java.util.Date;
 import java.util.Optional;
 
 public class Util {
+    public static class str {
+        public static boolean empty(String str) {
+            if (str == null) return true;
+            if (str.trim().length() == 0) return true;
+
+            return false;
+        }
+
+        public static boolean eq(String str1, String str2) {
+            if ( str1 == null && str2 == null ) return true;
+
+            if ( str1 == null ) {
+                str1 = "";
+            }
+
+            str1 = str1.trim();
+
+            if ( str2 == null ) {
+                str2 = "";
+            }
+
+            str2 = str2.trim();
+
+            return str1.equals(str2);
+        }
+    }
     public static class url {
         public static String encode(String str) {
             try {

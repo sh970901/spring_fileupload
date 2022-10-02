@@ -46,16 +46,13 @@
 
             <div>
                 해시태그 :
-                <th:block th:each="hashTag : ${article.extra.hashTags}">
-                    <a th:href="@{${hashTag.keyword.listUrl}}">
-                        #[[${hashTag.keyword.content}]]
-                    </a>
-                </th:block>
+                <th:block th:utext="${article.extra_hashTagLinks}" />
             </div>
 
             <div>
                 <span>해시태그</span>
-                <input type="text" name="hashTagContents" placeholder="#태그1 #태그2" th:value="${article.extra_inputValue_hashTagContents}" />
+                <input type="text" name="hashTagContents" placeholder="#태그1 #태그2"
+                       th:value="${article.extra_inputValue_hashTagContents}"/>
             </div>
 
             <div>
