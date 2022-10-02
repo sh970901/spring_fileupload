@@ -11,7 +11,7 @@
         <h1>글 리스트</h1>
 
         <ul>
-            <li th:each="article : ${articles}">
+            <li th:each="article : ${articles}" class="flex gap-2 items-center">
                 <a th:href="@{|/article/${article.id}|}" th:text="|번호 : ${article.id}|">
                 </a>
 
@@ -19,6 +19,9 @@
                 </a>
 
                 <<th:block th:utext="|태그 : ${article.extra_hashTagLinks}|" />
+                <div class="inline-flex" th:each="entry : ${article.extra.genFileMap}">
+                    <img class="w-10 h-10 rounded object-fit" th:src="@{${entry.value.url}}" alt="">
+                </div>
             </li>
         </ul>
     </div>

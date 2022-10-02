@@ -154,7 +154,10 @@ public class GenFileService {
 
     public Map<String, GenFile> getRelGenFileMap(Article article) {
         List<GenFile> genFiles = genFileRepository.findByRelTypeCodeAndRelIdOrderByTypeCodeAscType2CodeAscFileNoAsc("article", article.getId());
+        return getRelGenFileMap(genFiles);
+    }
 
+    public Map<String, GenFile> getRelGenFileMap(List<GenFile> genFiles) {
         return genFiles
                 .stream()
                 .collect(Collectors.toMap(
@@ -202,5 +205,8 @@ public class GenFileService {
 
     public Optional<GenFile> getById(Long id) {
         return genFileRepository.findById(id);
+    }
+    public List<GenFile> getRelGenFilesByRelIdIn(String relTypeCode, long[] relIds) {
+        return genFileRepository.findAllByRelTypeCodeAndRelIdInOrderByTypeCodeAscType2CodeAscFileNoAsc(relTypeCode, relIds);
     }
 }
