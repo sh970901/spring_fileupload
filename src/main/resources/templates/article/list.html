@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout/layout.html}">
+
+<head>
+    <title>글 리스트</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h1>글 리스트</h1>
+
+        <ul>
+            <li th:each="article : ${articles}">
+                <a th:href="@{|/article/${article.id}|}" th:text="${article.id}">
+                </a>
+
+                <a th:href="@{|/article/${article.id}|}" th:text="${article.subject}">
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>
