@@ -44,9 +44,9 @@ public class ArticleController {
         //여러 사진 받을 수 있음
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 
-        log.debug("fileMap : " + fileMap);
+//        log.debug("fileMap : " + fileMap);
 
-        Article article = articleService.write(memberContext.getId(), articleForm.getSubject(), articleForm.getContent());
+        Article article = articleService.write(memberContext.getId(), articleForm.getSubject(), articleForm.getContent(), articleForm.getHashTagContents());
 
         RsData<Map<String, GenFile>> saveFilesRsData = genFileService.saveFiles(article, fileMap);
 
