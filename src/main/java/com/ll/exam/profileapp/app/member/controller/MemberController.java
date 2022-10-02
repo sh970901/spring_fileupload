@@ -44,7 +44,12 @@ public class MemberController {
 
     @PreAuthorize("isAnonymous()")
     @GetMapping("/login")
-    public String showLogin(){
+    public String showLogin(HttpServletRequest request) {
+        String uri = request.getHeader("Referer");
+        if (uri != null && !uri.contains("/member/login")) {
+            request.getSession().setAttribute("prevPage", uri);
+        }
+
         return "member/login";
     }
 
@@ -79,7 +84,7 @@ public class MemberController {
     @PostMapping("/modify")
     public String modify(@AuthenticationPrincipal MemberContext context, String email, MultipartFile profileImg, String profileImg__delete) {
         Member member = memberService.getMemberById(context.getId());
-        if ( profileImg__delete != null && profileImg__delete.equals("Y") ) {
+        if (profileImg__delete != null && profileImg__delete.equals("Y")) {
             memberService.removeProfileImg(member);
         }
 
