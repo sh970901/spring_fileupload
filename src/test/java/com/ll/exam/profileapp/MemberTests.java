@@ -43,7 +43,7 @@ class MemberTests {
 
     @Test
     @DisplayName("회원의 수")
-    void t2() throws Exception {
+    void t1() throws Exception {
         long count = memberService.count();
         assertThat(count).isGreaterThan(0);
     }
@@ -51,7 +51,7 @@ class MemberTests {
     @Test
     @DisplayName("user1로 로그인 후 프로필페이지에 접속하면 user1의 이메일이 보여야 한다.")
     @WithUserDetails("user1")
-     void t3() throws Exception {
+     void t2() throws Exception {
         // WHEN
         // GET /
         ResultActions resultActions = mvc
@@ -72,7 +72,7 @@ class MemberTests {
     @Test
     @DisplayName("user4로 로그인 후 프로필페이지에 접속하면 user4의 이메일이 보여야 한다.")
     @WithUserDetails("user4")
-    void t4() throws Exception {
+    void t3() throws Exception {
         // WHEN
         // GET /
         ResultActions resultActions = mvc
@@ -92,7 +92,7 @@ class MemberTests {
 
     @Test
     @DisplayName("회원가입")
-    void t5() throws Exception {
+    void t4() throws Exception {
         String testUploadFileUrl = "https://picsum.photos/200/300";
         String originalFileName = "test.png";
 
