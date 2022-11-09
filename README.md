@@ -12,19 +12,25 @@
 
 ### 결과물
 - 카카오 로그인
-- ![img_1.png](img_1.png)
+
+![img_1.png](img_1.png)
 
 - 메인 화면
-- ![img_2.png](img_2.png)
+
+![img_2.png](img_2.png)
 
 - 게시글 작성
-- ![img_3.png](img_3.png)
+
+![img_3.png](img_3.png)
 
 - 게시글 상세
-- ![img_4.png](img_4.png)
+
+![img_4.png](img_4.png)
 
 - 게시글 수정
-- ![img_5.png](img_5.png)
+
+![img_5.png](img_5.png)
 
 - 게시글 리스트
-- ![img_6.png](img_6.png)
+
+![img_6.png](img_6.png)
